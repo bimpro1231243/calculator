@@ -89,6 +89,13 @@ calculator-website/index.html
       text-decoration: underline;
     }
 
+    /* Visitor Counter */
+    .visitor-counter {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+
   </style>
 </head>
 <body>
@@ -125,8 +132,22 @@ calculator-website/index.html
   <p>For more info, visit <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a></p>
 </div>
 
+<!-- Visitor Counter Section -->
+<div class="visitor-counter">
+  <p>Visitor Count: <span id="visitorCount">Loading...</span></p>
+</div>
+
 <script>
   let currentInput = '';
+  
+  // Visitor counter code using localStorage
+  let visitorCount = localStorage.getItem('visitorCount');
+  if (!visitorCount) {
+    visitorCount = 0;
+  }
+  visitorCount++;
+  localStorage.setItem('visitorCount', visitorCount);
+  document.getElementById('visitorCount').textContent = visitorCount;
 
   function updateDisplay() {
     document.getElementById('display').value = currentInput;
